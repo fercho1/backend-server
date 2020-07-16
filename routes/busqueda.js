@@ -84,7 +84,7 @@ function buscarClientes(busqueda, regex) {
     return new Promise((resolve, reject) => {
 
         Cliente.find({ nombre: regex })
-            .populate('usuario', 'nombre email')
+            .populate('usuario', 'nombre email img')
             .exec((err, clientes) => {
 
                 if (err) {
@@ -101,7 +101,7 @@ function buscarFacturas(busqueda, regex) {
     return new Promise((resolve, reject) => {
 
         Factura.find({ numFactura: regex })
-            .populate('usuario', 'nombre email')
+            .populate('usuario', 'nombre email img')
             .populate('cliente')
             .exec((err, facturas) => {
 
@@ -118,7 +118,7 @@ function buscarUsuarios(busqueda, regex) {
 
     return new Promise((resolve, reject) => {
 
-        Usuario.find({}, 'nombre email role')
+        Usuario.find({}, 'nombre email role img')
             .or([{ 'nombre': regex }, { 'email': regex }])
             .exec((err, usuarios) => {
 

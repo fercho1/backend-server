@@ -44,6 +44,37 @@ app.get('/', (req, res, next) => {
             })
 });
 
+//Obtener medico id
+app.get('/:id',(req,res)=>{
+    var id = req.params.id;
+    Factura.findById(id)
+            .populate('usuario', 'nombre email img')
+            .populate('cliente')
+            .exec((err, factura)=>{
+                if (err) {
+                    return res.status(500).json({
+                        ok: false,
+                        mensaje: 'Error al buscar factura',
+                        errors: err
+                    });
+                }
+        
+                if (!factura) {
+                    return res.status(400).json({
+                        ok: false,
+                        mensaje: 'El factura con el id ' + id + 'no existe',
+                        errors: { message: 'No existe un factura con ese ID' }
+                    });
+        
+                }
+
+                return res.status(200).json({
+                    ok: true,
+                    factura: factura
+                });
+            })
+})
+
 
 
 

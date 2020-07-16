@@ -30,7 +30,7 @@ app.get('/', (req, res, next) => {
                     });
                 }
 
-                Cliente.count({},(err,conteo)=>{
+                Cliente.count({}, (err, conteo) => {
 
 
                     res.status(200).json({
@@ -44,10 +44,41 @@ app.get('/', (req, res, next) => {
             })
 });
 
+// ==========================================
+// Obtener cliente por ID
+// ==========================================
+app.get('/:id', (req, res) => {
+    var id = req.params.id;
+    Cliente.findById(id)
+        .populate('usuario', 'nombre img email')
+        .exec((err, cliente) => {
+            if (err) {
+                return res.status(500).json({
+                    ok: false,
+                    mensaje: 'Error al buscar cliente',
+                    errors: err
+                });
+            }
+            if (!cliente) {
+                return res.status(400).json({
+                    ok: false,
+                    mensaje: 'El cliente con el id ' + id + 'no existe',
+                    errors: {
+                        message: 'No existe un cliente con ese ID'
+                    }
+                });
+            }
+            res.status(200).json({
+                ok: true,
+                cliente: cliente
+            });
+        })
+})
 
 
 
-//Actualizar un nuevo usuario
+
+//Actualizar un nuevo cliente
 
 app.put('/:id', mdAutenticacion.verificaToken, (req, res) => {
 
