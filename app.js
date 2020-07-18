@@ -30,6 +30,7 @@ var appRoutes = require('./routes/app');
 var usuarioRoutes = require('./routes/usuario');
 var loginRoutes = require('./routes/login');
 var clienteRoutes = require('./routes/cliente');
+var variableRoutes = require('./routes/variable');
 var facturaRoutes = require('./routes/factura');
 var busquedaRoutes = require('./routes/busqueda');
 var uploadRoutes = require('./routes/upload');
@@ -55,6 +56,7 @@ mongoose.connection.openUri('mongodb://localhost:27017/empresaDB', (err, res) =>
 //Rutas
 app.use('/usuario', usuarioRoutes);
 app.use('/cliente', clienteRoutes);
+app.use('/variable', variableRoutes);
 app.use('/factura', facturaRoutes);
 app.use('/busqueda', busquedaRoutes);
 app.use('/upload', uploadRoutes);

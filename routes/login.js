@@ -193,11 +193,11 @@ function obtenerMenu(ROLE){
           titulo: 'Principal',
           icono: 'mdi mdi-gauge',
           submenu:[
-            {titulo: 'Dashboard', url: '/dashboard'},
-            {titulo: 'ProgressBar', url: '/progress'},
-            {titulo: 'Graficas', url: '/graficas1'},
-            {titulo: 'Promesas', url: '/promesas'},
-            {titulo: 'RxJs', url: '/rxjs'}
+            {titulo: 'Declaración mensual de IVA', url: '/dashboard'},
+            {titulo: 'Declaración semestral de IVA', url: '/progress'},
+            {titulo: 'Declaración de Impuesto a la Renta', url: '/graficas1'},
+            {titulo: 'Anexo de Gastos Personales', url: '/promesas'},
+            {titulo: 'Anexo de Retenciones en la fuente por relación de dependencia', url: '/rxjs'} 
           ]
         },
         {
@@ -206,7 +206,8 @@ function obtenerMenu(ROLE){
           submenu:[
             //{titulo: 'Usuarios', url: '/usuarios'},
             {titulo: 'Clientes', url: '/clientes'},
-            {titulo: 'Facturas', url: '/facturas'}
+            {titulo: 'Facturas', url: '/facturas'},
+              {titulo: 'Variables', url: '/variables'}
           ]
         }
     

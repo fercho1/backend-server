@@ -44,7 +44,7 @@ app.get('/', (req, res, next) => {
             })
 });
 
-//Obtener medico id
+//Obtener factura id
 app.get('/:id',(req,res)=>{
     var id = req.params.id;
     Factura.findById(id)
@@ -106,7 +106,21 @@ app.put('/:id', mdAutenticacion.verificaToken, (req, res) => {
 
         }
 
+        factura.tipo = body.tipo;
         factura.numFactura = body.numFactura;
+        factura.fecha = body.fecha;
+        factura.concepto = body.concepto;
+        factura.bImponible0 = body.bImponible0;
+        factura.bImponible = body.bImponible;
+        factura.iva = body.iva;
+        factura.total = body.total;
+        factura.bImpRet = body.bImpRet;
+        factura.cbte = body.cbte;
+        factura.agnt = body.agnt;
+        factura.retIr = body.retIr;
+        factura.retIva = body.retIva;
+        factura.total2 = body.total2;
+
         factura.usuario = req.usuario._id;
         factura.cliente = body.cliente;
 
@@ -140,7 +154,21 @@ app.post('/', mdAutenticacion.verificaToken, (req, res) => {
     var body = req.body;
 
     var factura = new Factura({
+        tipo: body.tipo,
         numFactura: body.numFactura,
+        fecha: body.fecha,
+        concepto: body.concepto,
+        bImponible0: body.bImponible0,
+        bImponible: body.bImponible,
+        iva: body.iva,
+        total: body.total,
+        bImpRet: body.bImpRet,
+        cbte: body.cbte,
+        agnt: body.agnt,
+        retIr: body.retIr,
+        retIva: body.retIva,
+        total2: body.total2,
+
         usuario: req.usuario._id,
         cliente: body.cliente
     });

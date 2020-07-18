@@ -6,36 +6,36 @@ var mdAutenticacion = require('../middlewares/autenticacion');
 
 var app = express();
 
-var Cliente = require('../models/cliente');
+var Variable = require('../models/variable');
 
 
-// Obtener todos los clientes
+// Obtener todos los variables
 
 app.get('/', (req, res, next) => {
 
     var desde = req.query.desde || 0;
     desde = Number(desde);
 
-    Cliente.find({})
+    Variable.find({})
         .skip(desde)
         .limit(5)
         .populate('usuario', 'nombre email')
         .exec(
-            (err, clientes) => {
+            (err, variables) => {
                 if (err) {
                     return res.status(500).json({
                         ok: false,
-                        mensaje: 'Error cargando clientes',
+                        mensaje: 'Error cargando variables',
                         errors: err
                     });
                 }
 
-                Cliente.count({}, (err, conteo) => {
+                Variable.count({}, (err, conteo) => {
 
 
                     res.status(200).json({
                         ok: true,
-                        clientes: clientes,
+                        variables: variables,
                         total: conteo
                     });
 
@@ -45,32 +45,32 @@ app.get('/', (req, res, next) => {
 });
 
 // ==========================================
-// Obtener cliente por ID
+// Obtener variable por ID
 // ==========================================
 app.get('/:id', (req, res) => {
     var id = req.params.id;
-    Cliente.findById(id)
+    Variable.findById(id)
         .populate('usuario', 'nombre img email')
-        .exec((err, cliente) => {
+        .exec((err, variable) => {
             if (err) {
                 return res.status(500).json({
                     ok: false,
-                    mensaje: 'Error al buscar cliente',
+                    mensaje: 'Error al buscar variable',
                     errors: err
                 });
             }
-            if (!cliente) {
+            if (!variable) {
                 return res.status(400).json({
                     ok: false,
-                    mensaje: 'El cliente con el id ' + id + 'no existe',
+                    mensaje: 'El variable con el id ' + id + 'no existe',
                     errors: {
-                        message: 'No existe un cliente con ese ID'
+                        message: 'No existe un variable con ese ID'
                     }
                 });
             }
             res.status(200).json({
                 ok: true,
-                cliente: cliente
+                variable: variable
             });
         })
 })
@@ -78,47 +78,47 @@ app.get('/:id', (req, res) => {
 
 
 
-//Actualizar un nuevo cliente
+//Actualizar un nuevo variable
 
 app.put('/:id', mdAutenticacion.verificaToken, (req, res) => {
 
     var id = req.params.id;
     var body = req.body;
 
-    Cliente.findById(id, (err, cliente) => {
+    Variable.findById(id, (err, variable) => {
 
 
 
         if (err) {
             return res.status(500).json({
                 ok: false,
-                mensaje: 'Error al buscar cliente',
+                mensaje: 'Error al buscar variable',
                 errors: err
             });
         }
 
-        if (!cliente) {
+        if (!variable) {
             return res.status(400).json({
                 ok: false,
-                mensaje: 'El cliente con el id ' + id + 'no existe',
-                errors: { message: 'No existe un cliente con ese ID' }
+                mensaje: 'El variable con el id ' + id + 'no existe',
+                errors: { message: 'No existe un variable con ese ID' }
             });
 
         }
 
-        cliente.nombre = body.nombre;
-        cliente.cedula = body.cedula;
-        cliente.ruc = body.ruc;
-        cliente.clave = body.clave;
-        cliente.usuario = req.usuario._id;
+        variable.varImponible = body.varImponible;
+        variable.varIva = body.varIva;
+        variable.varRetIr = body.varRetIr;
+        
+        variable.usuario = req.usuario._id;
 
 
-        cliente.save((err, clienteGuardado) => {
+        variable.save((err, variableGuardado) => {
 
             if (err) {
                 return res.status(400).json({
                     ok: false,
-                    mensaje: 'Error al actualizar cliente',
+                    mensaje: 'Error al actualizar variable',
                     errors: err
                 });
             }
@@ -127,7 +127,7 @@ app.put('/:id', mdAutenticacion.verificaToken, (req, res) => {
 
             res.status(200).json({
                 ok: true,
-                cliente: clienteGuardado
+                variable: variableGuardado
             });
         });
     });
@@ -136,31 +136,31 @@ app.put('/:id', mdAutenticacion.verificaToken, (req, res) => {
 
 
 
-//Crear un nuevo cliente
+//Crear un nuevo variable
 
 app.post('/', mdAutenticacion.verificaToken, (req, res) => {
     var body = req.body;
 
-    var cliente = new Cliente({
-        nombre: body.nombre,
-        cedula: body.cedula,
-        ruc: body.ruc,
-        clave: body.clave,
+    var variable = new Variable({
+        varImponible: body.varImponible,
+        varIva: body.varIva,
+        varRetIr: body.varRetIr,
+        
         usuario: req.usuario._id
     });
 
-    cliente.save((err, clienteGuardado) => {
+    variable.save((err, variableGuardado) => {
         if (err) {
             return res.status(400).json({
                 ok: false,
-                mensaje: 'Error al crear cliente',
+                mensaje: 'Error al crear variable',
                 errors: err
             });
         }
 
         res.status(201).json({
             ok: true,
-            cliente: clienteGuardado
+            variable: variableGuardado
         });
 
     });
@@ -169,26 +169,26 @@ app.post('/', mdAutenticacion.verificaToken, (req, res) => {
 
 });
 
-//Eliminar un cliente por id
+//Eliminar un variable por id
 
 app.delete('/:id', mdAutenticacion.verificaToken, (req, res) => {
     var id = req.params.id;
 
-    Cliente.findByIdAndRemove(id, (err, clienteBorrado) => {
+    Variable.findByIdAndRemove(id, (err, variableBorrado) => {
 
         if (err) {
             return res.status(500).json({
                 ok: false,
-                mensaje: 'Error al borrar cliente',
+                mensaje: 'Error al borrar variable',
                 errors: err
             });
         }
 
-        if (!clienteBorrado) {
+        if (!variableBorrado) {
             return res.status(400).json({
                 ok: false,
-                mensaje: 'No existe un cliente con ese ID',
-                errors: { message: 'No existe un cliente con ese ID' }
+                mensaje: 'No existe un variable con ese ID',
+                errors: { message: 'No existe un variable con ese ID' }
             });
         }
 
@@ -197,7 +197,7 @@ app.delete('/:id', mdAutenticacion.verificaToken, (req, res) => {
 
         res.status(200).json({
             ok: true,
-            cliente: clienteBorrado
+            variable: variableBorrado
         });
 
     })
