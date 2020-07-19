@@ -193,11 +193,11 @@ function obtenerMenu(ROLE){
           titulo: 'Principal',
           icono: 'mdi mdi-gauge',
           submenu:[
-            {titulo: 'Declaración mensual de IVA', url: '/dashboard'},
-            {titulo: 'Declaración semestral de IVA', url: '/progress'},
-            {titulo: 'Declaración de Impuesto a la Renta', url: '/graficas1'},
-            {titulo: 'Anexo de Gastos Personales', url: '/promesas'},
-            {titulo: 'Anexo de Retenciones en la fuente por relación de dependencia', url: '/rxjs'} 
+            {titulo: 'Declaración mensual de IVA', url: '/mensualIva'},
+            {titulo: 'Declaración semestral de IVA', url: '/semestralIva'},
+            {titulo: 'Declaración de Impuesto a la Renta', url: '/impuestoRenta'},
+            {titulo: 'Anexo de Gastos Personales', url: '/gastosPersonales'},
+            {titulo: 'Anexo de Retenciones en la fuente por relación de dependencia', url: '/retencionesRelacion'}
           ]
         },
         {
