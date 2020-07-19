@@ -8,6 +8,38 @@ var app = express();
 
 var Cliente = require('../models/cliente');
 
+// Obtener todos los clientes
+
+app.get('/todo', (req, res, next) => {
+
+
+
+    Cliente.find({})
+        .populate('usuario', 'nombre email')
+        .exec(
+            (err, clientes) => {
+                if (err) {
+                    return res.status(500).json({
+                        ok: false,
+                        mensaje: 'Error cargando clientes',
+                        errors: err
+                    });
+                }
+
+                Cliente.count({}, (err, conteo) => {
+
+
+                    res.status(200).json({
+                        ok: true,
+                        clientes: clientes,
+                        total: conteo
+                    });
+
+                })
+
+            })
+});
+
 
 // Obtener todos los clientes
 
