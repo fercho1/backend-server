@@ -9,6 +9,59 @@ var app = express();
 var Factura = require('../models/factura');
 
 
+// Obtener las facturas agrupadas
+
+app.get('/group', (req, res, next) => {
+
+    var desde = req.query.desde || 0;
+    desde = Number(desde);
+
+
+    Factura.aggregate([
+        {
+          $group: {
+            _id: {
+              cliente: "$cliente", 
+              tipo: "$tipo", 
+              mes: { $month: "$fecha" },
+              anio: { $year: "$fecha" }
+            },
+            totalbImponible0: { $sum: "$bImponible0"  },
+            totalbImponible: { $sum: "$bImponible"  },
+            totalIva: { $sum: "$iva"  },
+            total: { $sum: "$total"  },
+            totalbImpRet: { $sum: "$bImpRet"  },
+            totalretIr: { $sum: "$retIr"  },
+            totalretIva: { $sum: "$retIva"  },
+            total2: { $sum: "$total2"  },
+            count: { $sum: 1 }
+          }
+        },
+        { $lookup: {from: 'clientes', localField: '_id.cliente', foreignField: '_id', as: 'cliente'} }
+      ])
+        .exec(
+            (err, facturas) => {
+                if (err) {
+                    return res.status(500).json({
+                        ok: false,
+                        mensaje: 'Error cargando facturas',
+                        errors: err
+                    });
+                }
+
+                Factura.count({},(err, conteo)=>{
+                    
+                    res.status(200).json({
+                        ok: true,
+                        facturas: facturas,
+                        total: conteo
+                    });
+                })
+
+            })
+});
+
+
 // Obtener todos los facturas
 
 app.get('/', (req, res, next) => {

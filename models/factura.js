@@ -5,7 +5,7 @@ var Schema =	mongoose.Schema;
 var facturaSchema =	new Schema({
     tipo: {	type: String,	required: [true,	'El	tipo	es	necesario']	},
     numFactura: {	type: String,	required: [true,	'El	numFactura	es	necesario']	},
-    fecha: {	type: String,	required: false	},
+    fecha: {	type: Date,	required: false	},
     concepto: {	type: String,	required: false	},
     bImponible0: {	type: Number,	required: false	},
     bImponible: {	type: Number,	required: false	},
