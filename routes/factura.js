@@ -13,32 +13,31 @@ var Factura = require('../models/factura');
 
 app.get('/group', (req, res, next) => {
 
-    var desde = req.query.desde || 0;
-    desde = Number(desde);
+   
 
 
     Factura.aggregate([
         {
-          $group: {
-            _id: {
-              cliente: "$cliente", 
-              tipo: "$tipo", 
-              mes: { $month: "$fecha" },
-              anio: { $year: "$fecha" }
-            },
-            totalbImponible0: { $sum: "$bImponible0"  },
-            totalbImponible: { $sum: "$bImponible"  },
-            totalIva: { $sum: "$iva"  },
-            total: { $sum: "$total"  },
-            totalbImpRet: { $sum: "$bImpRet"  },
-            totalretIr: { $sum: "$retIr"  },
-            totalretIva: { $sum: "$retIva"  },
-            total2: { $sum: "$total2"  },
-            count: { $sum: 1 }
-          }
+            $group: {
+                _id: {
+                    cliente: "$cliente",
+                    tipo: "$tipo",
+                    mes: { $month: "$fecha" },
+                    anio: { $year: "$fecha" }
+                },
+                totalbImponible0: { $sum: "$bImponible0" },
+                totalbImponible: { $sum: "$bImponible" },
+                totalIva: { $sum: "$iva" },
+                total: { $sum: "$total" },
+                totalbImpRet: { $sum: "$bImpRet" },
+                totalretIr: { $sum: "$retIr" },
+                totalretIva: { $sum: "$retIva" },
+                total2: { $sum: "$total2" },
+                count: { $sum: 1 }
+            }
         },
-        { $lookup: {from: 'clientes', localField: '_id.cliente', foreignField: '_id', as: 'cliente'} }
-      ])
+        { $lookup: { from: 'clientes', localField: '_id.cliente', foreignField: '_id', as: 'cliente' } }
+    ])
         .exec(
             (err, facturas) => {
                 if (err) {
@@ -49,8 +48,8 @@ app.get('/group', (req, res, next) => {
                     });
                 }
 
-                Factura.count({},(err, conteo)=>{
-                    
+                Factura.count({}, (err, conteo) => {
+
                     res.status(200).json({
                         ok: true,
                         facturas: facturas,
@@ -60,6 +59,83 @@ app.get('/group', (req, res, next) => {
 
             })
 });
+
+// Obtener las facturas agrupadas ingresos , egresos y retención
+
+app.get('/groups', (req, res, next) => {
+
+    
+
+
+    Factura.aggregate([
+        {
+            $group: {
+                _id: {
+                    cliente: "$cliente",
+                    tipo: "$tipo",
+                    mes: { $month: "$fecha" },
+                    anio: { $year: "$fecha" }
+                },
+                totalbImponible0: { $sum: "$bImponible0" },
+                totalbImponible: { $sum: "$bImponible" },
+                totalIva: { $sum: "$iva" },
+                total: { $sum: "$total" },
+                totalbImpRet: { $sum: "$bImpRet" },
+                totalretIr: { $sum: "$retIr" },
+                totalretIva: { $sum: "$retIva" },
+                total2: { $sum: "$total2" },
+                count: { $sum: 1 }
+            }
+        },
+        { $lookup: { from: 'clientes', localField: '_id.cliente', foreignField: '_id', as: 'cliente' } },
+        {
+            $group: {
+                _id: {
+                    cliente: "$_id.cliente",      
+                    anio: "$_id.anio",
+                    mes: "$_id.mes"
+                    
+                },
+    
+                
+                grupo: {
+                    $push: {
+                        cliente: "$_id.cliente",
+                        tipo: "$_id.tipo",
+                        anio: "$_id.anio",
+                        mes: "$_id.mes",
+                        totalbImponible: "$totalbImponible",
+                        totalbImponible0: "$totalbImponible0",
+                        totalretIr: "$totalretIr",
+                        count: "$count"
+                    }
+                }
+            }
+        },
+        { $lookup: { from: 'clientes', localField: '_id.cliente', foreignField: '_id', as: 'cliente' } }
+    ])
+        .exec(
+            (err, facturas) => {
+                if (err) {
+                    return res.status(500).json({
+                        ok: false,
+                        mensaje: 'Error cargando facturas',
+                        errors: err
+                    });
+                }
+
+                Factura.count({}, (err, conteo) => {
+
+                    res.status(200).json({
+                        ok: true,
+                        facturas: facturas,
+                        total: conteo
+                    });
+                })
+
+            })
+});
+
 
 
 // Obtener todos los facturas
@@ -85,8 +161,8 @@ app.get('/', (req, res, next) => {
                     });
                 }
 
-                Factura.count({},(err, conteo)=>{
-                    
+                Factura.count({}, (err, conteo) => {
+
                     res.status(200).json({
                         ok: true,
                         facturas: facturas,
@@ -98,34 +174,34 @@ app.get('/', (req, res, next) => {
 });
 
 //Obtener factura id
-app.get('/:id',(req,res)=>{
+app.get('/:id', (req, res) => {
     var id = req.params.id;
     Factura.findById(id)
-            .populate('usuario', 'nombre email img')
-            .populate('cliente')
-            .exec((err, factura)=>{
-                if (err) {
-                    return res.status(500).json({
-                        ok: false,
-                        mensaje: 'Error al buscar factura',
-                        errors: err
-                    });
-                }
-        
-                if (!factura) {
-                    return res.status(400).json({
-                        ok: false,
-                        mensaje: 'El factura con el id ' + id + 'no existe',
-                        errors: { message: 'No existe un factura con ese ID' }
-                    });
-        
-                }
-
-                return res.status(200).json({
-                    ok: true,
-                    factura: factura
+        .populate('usuario', 'nombre email img')
+        .populate('cliente')
+        .exec((err, factura) => {
+            if (err) {
+                return res.status(500).json({
+                    ok: false,
+                    mensaje: 'Error al buscar factura',
+                    errors: err
                 });
-            })
+            }
+
+            if (!factura) {
+                return res.status(400).json({
+                    ok: false,
+                    mensaje: 'El factura con el id ' + id + 'no existe',
+                    errors: { message: 'No existe un factura con ese ID' }
+                });
+
+            }
+
+            return res.status(200).json({
+                ok: true,
+                factura: factura
+            });
+        })
 })
 
 
@@ -283,3 +359,4 @@ app.delete('/:id', mdAutenticacion.verificaToken, (req, res) => {
 })
 
 module.exports = app;
+
