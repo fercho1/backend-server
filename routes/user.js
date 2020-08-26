@@ -39,6 +39,36 @@ app.get('/todo', (req, res, next) => {
             })
 });
 
+// ==========================================
+// Obtener user por ID
+// ==========================================
+app.get('/:id', (req, res) => {
+    var id = req.params.id;
+    User.findById(id)
+        .exec((err, user) => {
+            if (err) {
+                return res.status(500).json({
+                    ok: false,
+                    mensaje: 'Error al buscar user',
+                    errors: err
+                });
+            }
+            if (!user) {
+                return res.status(400).json({
+                    ok: false,
+                    mensaje: 'El user con el id ' + id + 'no existe',
+                    errors: {
+                        message: 'No existe un user con ese ID'
+                    }
+                });
+            }
+            res.status(200).json({
+                ok: true,
+                user: user
+            });
+        })
+})
+
 
 
 //Crear un nuevo cliente
@@ -67,7 +97,14 @@ app.post('/', mdAutenticacion.verificaToken, (req, res) => {
         //console.log(entry);
 
         var user = new User({
+            anio: entry.anio,
+            cedula: entry.cedula,
+            clave: entry.clave,
             nombre: entry.nombre,
+            ruc: entry.ruc,
+            totalEg: entry.totalEg,
+            totalIng: entry.totalIng,
+            totalRet: entry.totalRet,
 
 
         });
