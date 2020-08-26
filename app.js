@@ -20,9 +20,10 @@ app.use(function(req, res, next) {
 
 
 //Body Parser
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.raw());
 
-app.use(bodyParser.json())
 
 
 //Importar rutas
@@ -30,6 +31,7 @@ var appRoutes = require('./routes/app');
 var usuarioRoutes = require('./routes/usuario');
 var loginRoutes = require('./routes/login');
 var clienteRoutes = require('./routes/cliente');
+var userRoutes = require('./routes/user');
 var variableRoutes = require('./routes/variable');
 var facturaRoutes = require('./routes/factura');
 var busquedaRoutes = require('./routes/busqueda');
@@ -56,6 +58,7 @@ mongoose.connection.openUri('mongodb://localhost:27017/empresaDB', (err, res) =>
 //Rutas
 app.use('/usuario', usuarioRoutes);
 app.use('/cliente', clienteRoutes);
+app.use('/user', userRoutes);
 app.use('/variable', variableRoutes);
 app.use('/factura', facturaRoutes);
 app.use('/busqueda', busquedaRoutes);
