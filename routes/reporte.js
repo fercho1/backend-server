@@ -48,7 +48,7 @@ app.get('/', (req, res, next) => {
 app.get('/:id', (req, res) => {
     var id = req.params.id;
     Reporte.findById(id)
-        .exec((err, factura) => {
+        .exec((err, reporte) => {
             if (err) {
                 return res.status(500).json({
                     ok: false,
@@ -112,6 +112,7 @@ app.put('/:id', mdAutenticacion.verificaToken, (req, res) => {
         reporte.totalEg = body.totalEg;
         reporte.totalIng = body.totalIng;
         reporte.totalRet = body.totalRet;
+        reporte.sueldos = body.sueldos;
         
 
 
@@ -143,6 +144,8 @@ app.put('/:id', mdAutenticacion.verificaToken, (req, res) => {
 app.post('/', mdAutenticacion.verificaToken, (req, res) => {
     var body = req.body;
 
+    //console.log(body);
+
     var reporte = new Reporte({
         anio: body.anio,
         cedula: body.cedula,
@@ -152,6 +155,8 @@ app.post('/', mdAutenticacion.verificaToken, (req, res) => {
         totalEg: body.totalEg,
         totalIng: body.totalIng,
         totalRet: body.totalRet,
+        sueldos: body.sueldos,
+        
        
         
     });
