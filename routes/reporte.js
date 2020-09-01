@@ -113,6 +113,27 @@ app.put('/:id', mdAutenticacion.verificaToken, (req, res) => {
         reporte.totalIng = body.totalIng;
         reporte.totalRet = body.totalRet;
         reporte.sueldos = body.sueldos;
+        reporte.actEmpresariales = body.actEmpresariales;
+        reporte.actRelDep = body.actRelDep;
+        reporte.apPersonal = body.apPersonal;
+        reporte.ingRendimientos = body.ingRendimientos;
+        reporte.subBImponible = body.subBImponible;
+        reporte.gPersonales = body.gPersonales;
+        reporte.gPersonalesPro = body.gPersonalesPro;
+        reporte.educacion = body.educacion;
+        reporte.salud = body.salud;
+        reporte.alimentacion = body.alimentacion;
+        reporte.vivienda = body.vivienda;
+        reporte.vestimenta = body.vestimenta;
+        reporte.bimponibleGeneral = body.bimponibleGeneral;
+
+        reporte.fExcedente = body.fExcedente;
+        reporte.fBasica = body.fBasica;
+        reporte.iRentaC = body.iRentaC;
+        reporte.retRelacionD = body.retRelacionD;
+        reporte.retRendimiento = body.retRendimiento;
+        reporte.creditoT = body.creditoT;
+        reporte.iRentaFavor = body.iRentaFavor;
         
 
 
@@ -156,6 +177,27 @@ app.post('/', mdAutenticacion.verificaToken, (req, res) => {
         totalIng: body.totalIng,
         totalRet: body.totalRet,
         sueldos: body.sueldos,
+        actEmpresariales: body.actEmpresariales,
+        actRelDep: body.actRelDep,
+        apPersonal: body.apPersonal,
+        ingRendimientos: body.ingRendimientos,
+        subBImponible: body.subBImponible,
+        gPersonales: body.gPersonales,
+        gPersonalesPro: body.gPersonalesPro,
+        educacion: body.educacion,
+        salud: body.salud,
+        alimentacion: body.alimentacion,
+        vivienda: body.vivienda,
+        vestimenta: body.vestimenta,
+        bimponibleGeneral: body.bimponibleGeneral,
+
+        fExcedente: body.fExcedente,
+        fBasica: body.fBasica,
+        iRentaC: body.iRentaC,
+        retRelacionD: body.retRelacionD,
+        retRendimiento: body.retRendimiento,
+        creditoT: body.creditoT,
+        iRentaFavor: body.iRentaFavor,
         
        
         
