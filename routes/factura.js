@@ -8,6 +8,39 @@ var app = express();
 
 var Factura = require('../models/factura');
 
+// Obtener todos los clientes
+
+app.get('/todo', (req, res, next) => {
+
+
+
+    Factura.find({})
+    .populate('usuario', 'nombre email')
+    .populate('cliente')
+        .exec(
+            (err, facturas) => {
+                if (err) {
+                    return res.status(500).json({
+                        ok: false,
+                        mensaje: 'Error cargando facturas',
+                        errors: err
+                    });
+                }
+
+                Factura.count({}, (err, conteo) => {
+
+
+                    res.status(200).json({
+                        ok: true,
+                        facturas: facturas,
+                        total: conteo
+                    });
+
+                })
+
+            })
+});
+
 
 // Obtener las facturas agrupadas
 
@@ -53,7 +86,7 @@ app.get('/group', (req, res, next) => {
                     res.status(200).json({
                         ok: true,
                         facturas: facturas,
-                        total: conteo
+                        total: facturas.length
                     });
                 })
 
