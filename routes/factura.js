@@ -15,8 +15,8 @@ app.get('/todo', (req, res, next) => {
 
 
     Factura.find({})
-    .populate('usuario', 'nombre email')
-    .populate('cliente')
+        .populate('usuario', 'nombre email')
+        .populate('cliente')
         .exec(
             (err, facturas) => {
                 if (err) {
@@ -46,7 +46,7 @@ app.get('/todo', (req, res, next) => {
 
 app.get('/group', (req, res, next) => {
 
-   
+
 
 
     Factura.aggregate([
@@ -93,11 +93,73 @@ app.get('/group', (req, res, next) => {
             })
 });
 
+// Obtener las facturas agrupadas test
+
+app.get('/group1', (req, res, next) => {
+
+    Factura.find({})
+        .populate('usuario', 'nombre email')
+        .populate('cliente')
+        .exec(
+            (err, facturas1) => {
+                if (err) {
+                    return res.status(500).json({
+                        ok: false,
+                        mensaje: 'Error cargando facturas',
+                        errors: err
+                    });
+                }
+
+                Factura.count({}, (err, conteo) => {
+
+                    let facturas = facturas1.map(item => {
+
+                        
+                        
+                        return {
+                            _id: item._id,
+                            tipo: item.tipo,
+                            numFactura: item.numFactura,
+                            fecha: item.fecha,
+                            mes: item.fecha.getMonth() + 1,
+                            anio: item.fecha.getFullYear(),
+                            concepto: item.concepto,
+                            bImponible0: item.bImponible0,
+                            bImponible: item.bImponible,
+                            iva: item.iva,
+                            total: item.total,
+                            bImpRet: item.bImpRet,
+                            cbte: item.cbte,
+                            agnt: item.agnt,
+                            retIr: item.retIr,
+                            retIva: item.retIva,
+                            total2: item.total2,
+                            cliente: item.cliente,
+
+
+                        }
+                    });
+
+                    res.status(200).json({
+                        ok: true,
+                        facturas: facturas,
+                        total: conteo
+                    });
+
+                })
+
+            })
+
+
+
+
+});
+
 // Obtener las facturas agrupadas ingresos , egresos y retención
 
 app.get('/groups', (req, res, next) => {
 
-    
+
 
 
     Factura.aggregate([
@@ -124,13 +186,13 @@ app.get('/groups', (req, res, next) => {
         {
             $group: {
                 _id: {
-                    cliente: "$_id.cliente",      
+                    cliente: "$_id.cliente",
                     anio: "$_id.anio",
                     mes: "$_id.mes"
-                    
+
                 },
-    
-                
+
+
                 grupo: {
                     $push: {
                         cliente: "$_id.cliente",
