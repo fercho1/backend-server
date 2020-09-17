@@ -1,6 +1,7 @@
 // Requires
 var express = require('express');
 require('dotenv').config();
+const path = require('path');
 /* var mongoose = require('mongoose'); */
 const { dbConnection } = require('./database/config');
 var bodyParser = require('body-parser');
@@ -92,6 +93,12 @@ app.use('/upload', uploadRoutes);
 app.use('/img', imagenesRoutes);
 app.use('/login', loginRoutes);
 app.use('/', appRoutes);
+
+
+//Lo ultimo
+app.get('*', (req, res)=>{
+    res.sendFile(path.resolve(__dirname, 'public/index.html'));
+});
 
 
 
