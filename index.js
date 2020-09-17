@@ -77,7 +77,8 @@ dbConnection();
 //console.log(process.env);
 
 
-
+// Directorio público
+app.use( express.static('public') );
 
 //Rutas
 app.use('/usuario', usuarioRoutes);
