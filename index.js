@@ -1,12 +1,17 @@
 // Requires
 var express = require('express');
-var mongoose = require('mongoose');
+require('dotenv').config();
+/* var mongoose = require('mongoose'); */
+const { dbConnection } = require('./database/config');
 var bodyParser = require('body-parser');
 
 
 
 // Inicializar variables
 var app = express();
+
+
+
 
 
 //CORS
@@ -45,13 +50,31 @@ app.use(express.static(__dirname + '/'))
 app.use('/uploads', serveIndex(__dirname + '/uploads')); */
 
 
-//Conexion a la base de datos
-mongoose.connection.openUri('mongodb://localhost:27017/empresaDB', (err, res) => {
+//datos mongodb atlas :
+//USER: fernando
+//pass: GrQWqbuMFbGjFXPC
+
+//Conexion a la base de datos 1
+/* mongoose.connection.openUri('mongodb://localhost:27017/empresaDB', (err, res) => {
     if (err) throw err;
 
     console.log('Base de datos: \x1b[32m%s\x1b[0m', 'online');
 
+}); */
+
+//Conexion BD 
+dbConnection();
+
+
+app.get('/',(req,res)=>{
+    res.json({
+        ok:true,
+        msg: 'Hola mundo'
+    });
 });
+
+
+//console.log(process.env);
 
 
 
@@ -71,7 +94,13 @@ app.use('/', appRoutes);
 
 
 
-// Escuchar peticiones
-app.listen(3000, () => {
+// Escuchar peticiones 1 anterior BD local
+/* app.listen(3000, () => {
     console.log('Express server puerto 3000: \x1b[32m%s\x1b[0m', 'online');
+}) */
+
+
+// Escuchar peticiones
+app.listen(process.env.PORT, () => {
+    console.log('Express server puerto :' + process.env.PORT + '\x1b[32m%s\x1b[0m', '  online');
 })
