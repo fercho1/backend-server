@@ -66,12 +66,12 @@ app.use('/uploads', serveIndex(__dirname + '/uploads')); */
 dbConnection();
 
 
-app.get('/',(req,res)=>{
+/* app.get('/',(req,res)=>{
     res.json({
         ok:true,
         msg: 'Hola mundo'
     });
-});
+}); */
 
 
 //console.log(process.env);
