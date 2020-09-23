@@ -56,6 +56,10 @@ app.use('/uploads', serveIndex(__dirname + '/uploads')); */
 //pass: GrQWqbuMFbGjFXPC
 
 //Conexion a la base de datos 1
+//base de datos online:
+//DB_CNN=mongodb+srv://fernando:GrQWqbuMFbGjFXPC@cluster0.kcita.mongodb.net/test
+//Base de datos local:
+//DB_CNN=mongodb://localhost:27017/empresaDB
 /* mongoose.connection.openUri('mongodb://localhost:27017/empresaDB', (err, res) => {
     if (err) throw err;
 
