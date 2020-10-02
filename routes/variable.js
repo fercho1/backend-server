@@ -109,6 +109,7 @@ app.put('/:id', mdAutenticacion.verificaToken, (req, res) => {
         variable.varImponible = body.varImponible;
         variable.varIva = body.varIva;
         variable.varRetIr = body.varRetIr;
+        variable.varLiq = body.varLiq;
         
         variable.usuario = req.usuario._id;
 
@@ -145,6 +146,7 @@ app.post('/', mdAutenticacion.verificaToken, (req, res) => {
         varImponible: body.varImponible,
         varIva: body.varIva,
         varRetIr: body.varRetIr,
+        varLiq: body.varLiq,
         
         usuario: req.usuario._id
     });
