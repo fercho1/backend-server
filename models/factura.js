@@ -11,7 +11,7 @@ var facturaSchema = new Schema({
     bImponible: { type: Number, required: false },
     iva: { type: Number, required: false },
     total: { type: Number, required: false },
-    bImpRet: { type: Number, required: false },
+    
     cbte: { type: String, required: false },
     agnt: { type: String, required: false },
     retIr: { type: Number, required: false },

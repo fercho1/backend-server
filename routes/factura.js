@@ -62,7 +62,7 @@ app.get('/group', (req, res, next) => {
                 totalbImponible: { $sum: "$bImponible" },
                 totalIva: { $sum: "$iva" },
                 total: { $sum: "$total" },
-                totalbImpRet: { $sum: "$bImpRet" },
+                
                 totalretIr: { $sum: "$retIr" },
                 totalretIva: { $sum: "$retIva" },
                 total2: { $sum: "$total2" },
@@ -128,7 +128,7 @@ app.get('/group1', (req, res, next) => {
                             bImponible: item.bImponible,
                             iva: item.iva,
                             total: item.total,
-                            bImpRet: item.bImpRet,
+                            
                             cbte: item.cbte,
                             agnt: item.agnt,
                             retIr: item.retIr,
@@ -175,7 +175,7 @@ app.get('/groups', (req, res, next) => {
                 totalbImponible: { $sum: "$bImponible" },
                 totalIva: { $sum: "$iva" },
                 total: { $sum: "$total" },
-                totalbImpRet: { $sum: "$bImpRet" },
+                
                 totalretIr: { $sum: "$retIr" },
                 totalretIva: { $sum: "$retIva" },
                 total2: { $sum: "$total2" },
@@ -338,7 +338,7 @@ app.put('/:id', mdAutenticacion.verificaToken, (req, res) => {
         factura.bImponible = body.bImponible;
         factura.iva = body.iva;
         factura.total = body.total;
-        factura.bImpRet = body.bImpRet;
+        
         factura.cbte = body.cbte;
         factura.agnt = body.agnt;
         factura.retIr = body.retIr;
@@ -386,7 +386,7 @@ app.post('/', mdAutenticacion.verificaToken, (req, res) => {
         bImponible: body.bImponible,
         iva: body.iva,
         total: body.total,
-        bImpRet: body.bImpRet,
+        
         cbte: body.cbte,
         agnt: body.agnt,
         retIr: body.retIr,
