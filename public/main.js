@@ -2929,7 +2929,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 const environment = {
     production: false,
-    base_url: 'http://192.168.100.171:3000'
+    base_url: 'http://edwin:3000'
 };
 /*
  * For easier debugging in development mode, you can import the following file
