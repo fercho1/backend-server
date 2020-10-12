@@ -537,7 +537,7 @@ class LoginComponent {
     }
 }
 LoginComponent.ɵfac = function LoginComponent_Factory(t) { return new (t || LoginComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](_services_service_index__WEBPACK_IMPORTED_MODULE_6__["UsuarioService"]), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](_angular_common__WEBPACK_IMPORTED_MODULE_1__["DOCUMENT"]), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgZone"])); };
-LoginComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineComponent"]({ type: LoginComponent, selectors: [["app-login"]], decls: 49, vars: 3, consts: [["id", "wrapper", 1, "login-register", "login-sidebar", 2, "background-image", "url(../assets/images/background/login-register.jpg)"], [1, "login-box", "card"], [1, "card-body"], ["ngNativeValidate", "", 1, "form-horizontal", "form-material", 3, "ngSubmit"], ["f", "ngForm"], ["routerLink", "/login", 1, "text-center", "db"], ["src", "../assets/images/dia.png", "alt", "Home", 1, "img-70", "mt-5"], [1, "form-group", "m-t-40"], [1, "col-xs-12"], ["name", "email", "type", "email", "required", "", "placeholder", "Correo del usuario", 1, "form-control", 3, "ngModel"], [1, "form-group"], [1, "col-xs-12", "input-group"], ["name", "password", "type", "password", "required", "", "placeholder", "Contrase\u00F1a", "id", "myInput", 1, "form-control", 3, "ngModel"], [1, "mr-2", 3, "click"], [1, "fa", "fa-eye"], [1, "form-group", "row"], [1, "col-md-12"], [1, "checkbox", "checkbox-primary", "pull-left", "p-t-0"], ["name", "recuerdame", "id", "checkbox-signup", "type", "checkbox", 1, "filled-in", "chk-col-light-blue", 3, "ngModel", "ngModelChange"], ["for", "checkbox-signup"], [1, "form-group", "text-center", "m-t-20"], ["type", "submit", 1, "btn", "btn-info", "btn-lg", "btn-block", "text-uppercase", "btn-rounded"], [1, "row", "ml-5"], ["id", "google-btn", 1, "col-xs-12", "col-sm-12", "col-md-12", "m-t-10", "mb-4", "text-center"], ["id", "my-signin2"], [1, "form-group", "m-b-0"], [1, "col-sm-12", "text-center"], ["routerLink", "/register", 1, "text-primary", "m-l-5"], ["id", "recoverform", "action", "index.html", 1, "form-horizontal"], [1, "text-muted"], ["type", "text", "required", "", "placeholder", "Email", 1, "form-control"], ["type", "submit", 1, "btn", "btn-primary", "btn-lg", "btn-block", "text-uppercase", "waves-effect", "waves-light"]], template: function LoginComponent_Template(rf, ctx) { if (rf & 1) {
+LoginComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineComponent"]({ type: LoginComponent, selectors: [["app-login"]], decls: 46, vars: 3, consts: [["id", "wrapper", 1, "login-register", "login-sidebar", 2, "background-image", "url(../assets/images/background/login-register.jpg)"], [1, "login-box", "card"], [1, "card-body"], ["ngNativeValidate", "", 1, "form-horizontal", "form-material", 3, "ngSubmit"], ["f", "ngForm"], ["routerLink", "/login", 1, "text-center", "db"], ["src", "../assets/images/dia.png", "alt", "Home", 1, "img-70", "mt-5"], [1, "form-group", "m-t-40"], [1, "col-xs-12"], ["name", "email", "type", "email", "required", "", "placeholder", "Correo del usuario", 1, "form-control", 3, "ngModel"], [1, "form-group"], [1, "col-xs-12", "input-group"], ["name", "password", "type", "password", "required", "", "placeholder", "Contrase\u00F1a", "id", "myInput", 1, "form-control", 3, "ngModel"], [1, "mr-2", 3, "click"], [1, "fa", "fa-eye"], [1, "form-group", "row"], [1, "col-md-12"], [1, "checkbox", "checkbox-primary", "pull-left", "p-t-0"], ["name", "recuerdame", "id", "checkbox-signup", "type", "checkbox", 1, "filled-in", "chk-col-light-blue", 3, "ngModel", "ngModelChange"], ["for", "checkbox-signup"], [1, "form-group", "text-center", "m-t-20"], ["type", "submit", 1, "btn", "btn-info", "btn-lg", "btn-block", "text-uppercase", "btn-rounded"], [1, "form-group", "m-b-0"], [1, "col-sm-12", "text-center"], ["routerLink", "/register", 1, "text-primary", "m-l-5"], ["id", "recoverform", "action", "index.html", 1, "form-horizontal"], [1, "text-muted"], ["type", "text", "required", "", "placeholder", "Email", 1, "form-control"], ["type", "submit", 1, "btn", "btn-primary", "btn-lg", "btn-block", "text-uppercase", "waves-effect", "waves-light"]], template: function LoginComponent_Template(rf, ctx) { if (rf & 1) {
         const _r1 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵgetCurrentView"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "section", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](1, "div", 1);
@@ -583,40 +583,35 @@ LoginComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineCom
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](26, "div", 22);
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](27, "div", 23);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelement"](28, "div", 24);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](29, "div", 25);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](30, "div", 26);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](31, " No tienes cuenta? ");
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](32, "a", 27);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](33, "b");
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](34, "Crear cuenta");
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](28, " No tienes cuenta? ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](29, "a", 24);
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](30, "b");
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](31, "Crear cuenta");
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](35, "form", 28);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](36, "div", 10);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](37, "div", 8);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](38, "h3");
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](39, "Recuperar contrase\u00F1a");
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](32, "form", 25);
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](33, "div", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](34, "div", 8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](35, "h3");
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](36, "Recuperar contrase\u00F1a");
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](40, "p", 29);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](41, "Escriba su correo electr\u00F3nico y siga los pasos! ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](37, "p", 26);
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](38, "Escriba su correo electr\u00F3nico y siga los pasos! ");
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](42, "div", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](39, "div", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](40, "div", 8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelement"](41, "input", 27);
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](42, "div", 20);
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](43, "div", 8);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelement"](44, "input", 30);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](45, "div", 20);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](46, "div", 8);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](47, "button", 31);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](48, "Reset");
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](44, "button", 28);
+        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](45, "Reset");
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
