@@ -37,6 +37,7 @@ var appRoutes = require('./routes/app');
 var usuarioRoutes = require('./routes/usuario');
 var loginRoutes = require('./routes/login');
 var clienteRoutes = require('./routes/cliente');
+var rangoRoutes = require('./routes/rango');
 var userRoutes = require('./routes/user');
 var variableRoutes = require('./routes/variable');
 var facturaRoutes = require('./routes/factura');
@@ -88,6 +89,7 @@ app.use( express.static('public') );
 //Rutas
 app.use('/usuario', usuarioRoutes);
 app.use('/cliente', clienteRoutes);
+app.use('/rango', rangoRoutes);
 app.use('/user', userRoutes);
 app.use('/variable', variableRoutes);
 app.use('/factura', facturaRoutes);

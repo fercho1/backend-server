@@ -302,7 +302,7 @@ app.get('/:id', (req, res) => {
 
 
 
-//Actualizar un nuevo usuario
+//Actualizar un nueva factura
 
 app.put('/:id', mdAutenticacion.verificaToken, (req, res) => {
 
@@ -344,6 +344,9 @@ app.put('/:id', mdAutenticacion.verificaToken, (req, res) => {
         factura.retIr = body.retIr;
         factura.retIva = body.retIva;
         factura.total2 = body.total2;
+
+        factura.varIr = body.varIr;
+        factura.varIva = body.total2;
 
         factura.usuario = req.usuario._id;
         factura.cliente = body.cliente;
@@ -392,6 +395,9 @@ app.post('/', mdAutenticacion.verificaToken, (req, res) => {
         retIr: body.retIr,
         retIva: body.retIva,
         total2: body.total2,
+
+        varIr: body.varIr,
+        varIva: body.varIva,
 
         usuario: req.usuario._id,
         cliente: body.cliente

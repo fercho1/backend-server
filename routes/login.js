@@ -208,7 +208,8 @@ function obtenerMenu(ROLE){
             //{titulo: 'Usuarios', url: '/usuarios'},
             {titulo: 'Clientes', url: '/clientes'},
             {titulo: 'Facturas', url: '/facturas'},
-              {titulo: 'Variables', url: '/variables'}
+            {titulo: 'Variables', url: '/variables'},
+            {titulo: 'Rangos Tablas', url: '/rangos'}
           ]
         }
     

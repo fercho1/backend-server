@@ -17,6 +17,8 @@ var facturaSchema = new Schema({
     retIr: { type: Number, required: false },
     retIva: { type: Number, required: false },
     total2: { type: Number, required: false },
+    varIr: { type: Number, required: false },
+    varIva: { type: Number, required: false },
 
     img: { type: String, required: false },
     usuario: { type: Schema.Types.ObjectId, ref: 'Usuario', required: true },

@@ -730,7 +730,7 @@ class RegisterComponent {
     }
 }
 RegisterComponent.ɵfac = function RegisterComponent_Factory(t) { return new (t || RegisterComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_service_index__WEBPACK_IMPORTED_MODULE_4__["UsuarioService"]), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"])); };
-RegisterComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: RegisterComponent, selectors: [["app-register"]], decls: 35, vars: 2, consts: [["id", "wrapper", 1, "login-register", "login-sidebar", 2, "background-image", "url(../assets/images/background/login-register.jpg)"], [1, "login-box", "card"], [1, "card-body"], ["ngNativeValidate", "", "id", "loginform", "action", "index.html", 1, "form-horizontal", "form-material", 3, "formGroup", "ngSubmit"], ["routerLink", "/login", 1, "text-center", "db"], ["src", "../assets/images/dia.png", "alt", "Home", 1, "img-70", "mt-5"], [1, "box-title", "m-t-40", "m-b-0"], [1, "form-group", "m-t-20"], [1, "col-xs-12"], ["formControlName", "nombre", "name", "nombre", "type", "text", "required", "", "placeholder", "Nombre", 1, "form-control"], [1, "form-group"], ["formControlName", "correo", "name", "correo", "type", "email", "required", "", "placeholder", "Email", 1, "form-control"], ["formControlName", "password", "name", "password", "type", "password", "required", "", "placeholder", "Contrase\u00F1a", 1, "form-control"], ["formControlName", "password2", "name", "password2", "type", "password", "required", "", "placeholder", "Confirma Contrase\u00F1a", 1, "form-control"], ["class", "form-group", 4, "ngIf"], [1, "form-group", "text-center", "m-t-20"], ["type", "submit", 1, "btn", "btn-info", "btn-lg", "btn-block", "text-uppercase", "waves-effect", "waves-light"], [1, "form-group", "m-b-0"], [1, "col-sm-12", "text-center"], ["routerLink", "/login", 1, "text-info", "m-l-5"], [1, "text-danger"]], template: function RegisterComponent_Template(rf, ctx) { if (rf & 1) {
+RegisterComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: RegisterComponent, selectors: [["app-register"]], decls: 35, vars: 2, consts: [["id", "wrapper", 1, "login-register", "login-sidebar", 2, "background-image", "url(../assets/images/background/login-register.jpg)"], [1, "login-box", "card"], [1, "card-body"], ["ngNativeValidate", "", "id", "loginform", "action", "index.html", 1, "form-horizontal", "form-material", 3, "formGroup", "ngSubmit"], ["routerLink", "/login", 1, "text-center", "db"], ["src", "../assets/images/dia.png", "alt", "Home", 1, "img-70", "mt-5"], [1, "box-title", "m-t-40", "m-b-0"], [1, "form-group", "m-t-20"], [1, "col-xs-12"], ["formControlName", "nombre", "name", "nombre", "type", "text", "required", "", "placeholder", "Nombre", "oninput", "this.value = this.value.toUpperCase()", 1, "form-control"], [1, "form-group"], ["formControlName", "correo", "name", "correo", "type", "email", "required", "", "placeholder", "Email", 1, "form-control"], ["formControlName", "password", "name", "password", "type", "password", "required", "", "placeholder", "Contrase\u00F1a", 1, "form-control"], ["formControlName", "password2", "name", "password2", "type", "password", "required", "", "placeholder", "Confirma Contrase\u00F1a", 1, "form-control"], ["class", "form-group", 4, "ngIf"], [1, "form-group", "text-center", "m-t-20"], ["type", "submit", 1, "btn", "btn-info", "btn-lg", "btn-block", "text-uppercase", "waves-effect", "waves-light"], [1, "form-group", "m-b-0"], [1, "col-sm-12", "text-center"], ["routerLink", "/login", 1, "text-info", "m-l-5"], [1, "text-danger"]], template: function RegisterComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "section", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "div", 2);
@@ -1324,6 +1324,10 @@ class FacturaService {
         //console.log(cliente);
         //this.cliente = cliente;    
     }
+    guardarStorage1(varIr, varIva) {
+        localStorage.setItem('varIr', varIr);
+        localStorage.setItem('varIva', varIva);
+    }
     guardarFactura(factura) {
         /* let url = URL_SERVICIOS + '/factura'; */
         let url = base_url + '/factura';
@@ -1344,8 +1348,9 @@ class FacturaService {
             return this.http.post(url, factura)
                 .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((resp) => {
                 //Swal.fire('Factura creada', factura.numFactura, 'success');
-                //console.log(resp.factura.cliente);
+                //console.log(resp);
                 this.guardarStorage(resp.factura.cliente);
+                this.guardarStorage1(resp.factura.varIr, resp.factura.varIva);
                 this.router.navigate(['/facturas']);
                 return resp.factura;
             }));
@@ -1593,6 +1598,100 @@ ImpuestoRentaService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
 
 /***/ }),
 
+/***/ "./src/app/services/rango/rango.service.ts":
+/*!*************************************************!*\
+  !*** ./src/app/services/rango/rango.service.ts ***!
+  \*************************************************/
+/*! exports provided: RangoService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RangoService", function() { return RangoService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
+/* harmony import */ var _service_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../service.index */ "./src/app/services/service.index.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+
+
+
+
+
+
+
+
+const base_url = src_environments_environment__WEBPACK_IMPORTED_MODULE_1__["environment"].base_url;
+class RangoService {
+    constructor(http, _usuarioService, router) {
+        this.http = http;
+        this._usuarioService = _usuarioService;
+        this.router = router;
+    }
+    cargarRangos(desde = 0) {
+        let url = base_url + '/rango/todo';
+        return this.http.get(url);
+    }
+    borrarRango(id) {
+        let url = base_url + '/rango/' + id;
+        url += '?token=' + this._usuarioService.token;
+        return this.http.delete(url)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])(resp => sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('Rango Borrado', 'Eliminado correctamente', 'success')));
+    }
+    actualizarRango(rango) {
+        let url = base_url + '/rango/' + rango._id;
+        url += '?token=' + this._usuarioService.token;
+        return this.http.put(url, rango)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((resp) => {
+            sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('Rango actualizado', 'actualizado', 'success');
+            return resp.rango;
+        }));
+    }
+    crearRango(rango) {
+        let url = base_url + '/rango';
+        if (rango._id) {
+            //Actualizando
+            url += '/' + rango._id;
+            url += '?token=' + this._usuarioService.token;
+            return this.http.put(url, rango)
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((resp) => {
+                sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('Rango actualizado', 'actualizado', 'success');
+                this.router.navigate(['/rangos']);
+                return resp.rango;
+            }));
+        }
+        else {
+            //Creando
+            url += '?token=' + this._usuarioService.token;
+            return this.http.post(url, rango)
+                .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((resp) => {
+                sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('Rango creado', 'creado', 'success');
+                this.router.navigate(['/rangos']);
+                return resp.rango;
+            }));
+        }
+    }
+    obtenerRango(id) {
+        let url = base_url + '/rango/' + id;
+        return this.http.get(url)
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["map"])((resp) => resp.rango));
+    }
+}
+RangoService.ɵfac = function RangoService_Factory(t) { return new (t || RangoService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_service_index__WEBPACK_IMPORTED_MODULE_5__["UsuarioService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"])); };
+RangoService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({ token: RangoService, factory: RangoService.ɵfac, providedIn: 'root' });
+/*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RangoService, [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"],
+        args: [{
+                providedIn: 'root'
+            }]
+    }], function () { return [{ type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"] }, { type: _service_index__WEBPACK_IMPORTED_MODULE_5__["UsuarioService"] }, { type: _angular_router__WEBPACK_IMPORTED_MODULE_6__["Router"] }]; }, null); })();
+
+
+/***/ }),
+
 /***/ "./src/app/services/reporte/reporte.service.ts":
 /*!*****************************************************!*\
   !*** ./src/app/services/reporte/reporte.service.ts ***!
@@ -1710,7 +1809,7 @@ ReporteService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineIn
 /*!*******************************************!*\
   !*** ./src/app/services/service.index.ts ***!
   \*******************************************/
-/*! exports provided: ReporteService, ImpuestoRentaService, VariableService, VerificaTokenGuard, AdminGuard, FacturaService, ClienteService, SubirArchivoService, LoginGuardGuard, SettingsService, SharedService, SidebarService, UsuarioService */
+/*! exports provided: ReporteService, ImpuestoRentaService, VariableService, VerificaTokenGuard, AdminGuard, FacturaService, ClienteService, SubirArchivoService, LoginGuardGuard, SettingsService, SharedService, SidebarService, UsuarioService, RangoService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1753,6 +1852,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony import */ var _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./usuario/usuario.service */ "./src/app/services/usuario/usuario.service.ts");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "UsuarioService", function() { return _usuario_usuario_service__WEBPACK_IMPORTED_MODULE_12__["UsuarioService"]; });
+
+/* harmony import */ var _rango_rango_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./rango/rango.service */ "./src/app/services/rango/rango.service.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "RangoService", function() { return _rango_rango_service__WEBPACK_IMPORTED_MODULE_13__["RangoService"]; });
+
 
 
 
@@ -1805,6 +1908,7 @@ ServiceModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInje
         _components_modal_upload_modal_upload_service__WEBPACK_IMPORTED_MODULE_0__["ModalUploadService"],
         _service_index__WEBPACK_IMPORTED_MODULE_3__["ClienteService"],
         _service_index__WEBPACK_IMPORTED_MODULE_3__["FacturaService"],
+        _service_index__WEBPACK_IMPORTED_MODULE_3__["RangoService"],
         _service_index__WEBPACK_IMPORTED_MODULE_3__["ReporteService"],
         _service_index__WEBPACK_IMPORTED_MODULE_3__["VariableService"],
         _service_index__WEBPACK_IMPORTED_MODULE_3__["ImpuestoRentaService"],
@@ -1834,6 +1938,7 @@ ServiceModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineInje
                     _components_modal_upload_modal_upload_service__WEBPACK_IMPORTED_MODULE_0__["ModalUploadService"],
                     _service_index__WEBPACK_IMPORTED_MODULE_3__["ClienteService"],
                     _service_index__WEBPACK_IMPORTED_MODULE_3__["FacturaService"],
+                    _service_index__WEBPACK_IMPORTED_MODULE_3__["RangoService"],
                     _service_index__WEBPACK_IMPORTED_MODULE_3__["ReporteService"],
                     _service_index__WEBPACK_IMPORTED_MODULE_3__["VariableService"],
                     _service_index__WEBPACK_IMPORTED_MODULE_3__["ImpuestoRentaService"],
