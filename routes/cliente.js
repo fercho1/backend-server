@@ -173,6 +173,8 @@ app.put('/:id', mdAutenticacion.verificaToken, (req, res) => {
 app.post('/', mdAutenticacion.verificaToken, (req, res) => {
     var body = req.body;
 
+    //console.log(body);
+
     var cliente = new Cliente({
         nombre: body.nombre,
         cedula: body.cedula,

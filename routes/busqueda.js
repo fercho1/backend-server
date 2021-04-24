@@ -5,6 +5,7 @@ var app = express();
 var Cliente = require('../models/cliente');
 var Factura = require('../models/factura');
 var Usuario = require('../models/usuario');
+var Concepto = require('../models/concepto');
 
 //Busqueda por coleccion
 app.get('/coleccion/:tabla/:busqueda', (req, res) => {
@@ -27,6 +28,10 @@ app.get('/coleccion/:tabla/:busqueda', (req, res) => {
 
         case 'clientes':
             promesa = buscarClientes(busqueda, regex);
+            break;
+        
+        case 'conceptos':
+            promesa = buscarConceptos(busqueda, regex);
             break;
 
         default:
@@ -61,7 +66,8 @@ app.get('/todo/:busqueda', (req, res, next) => {
     Promise.all([
         buscarClientes(busqueda, regex),
         buscarFacturas(busqueda, regex),
-        buscarUsuarios(busqueda, regex)
+        buscarUsuarios(busqueda, regex),
+        buscarConceptos(busqueda, regex)
 
     ])
         .then(respuestas => {
@@ -70,7 +76,8 @@ app.get('/todo/:busqueda', (req, res, next) => {
                 ok: true,
                 clientes: respuestas[0],
                 facturas: respuestas[1],
-                usuarios: respuestas[2]
+                usuarios: respuestas[2],
+                conceptos: respuestas[3]
             });
         })
 
@@ -126,6 +133,25 @@ function buscarUsuarios(busqueda, regex) {
                     reject('Error al buscar usuarios', err);
                 } else {
                     resolve(usuarios);
+                }
+
+            })
+
+    });
+}
+
+function buscarConceptos(busqueda, regex) {
+
+    return new Promise((resolve, reject) => {
+
+        Concepto.find({}, 'nombre')
+            .or([{ 'nombre': regex }])
+            .exec((err, conceptos) => {
+
+                if (err) {
+                    reject('Error al buscar conceptos', err);
+                } else {
+                    resolve(conceptos);
                 }
 
             })

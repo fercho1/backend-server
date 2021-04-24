@@ -1,4 +1,4 @@
-// Requires de
+// Requires
 var express = require('express');
 require('dotenv').config();
 const path = require('path');
@@ -37,6 +37,7 @@ var appRoutes = require('./routes/app');
 var usuarioRoutes = require('./routes/usuario');
 var loginRoutes = require('./routes/login');
 var clienteRoutes = require('./routes/cliente');
+var conceptoRoutes = require('./routes/concepto');
 var rangoRoutes = require('./routes/rango');
 var userRoutes = require('./routes/user');
 var variableRoutes = require('./routes/variable');
@@ -89,6 +90,7 @@ app.use( express.static('public') );
 //Rutas
 app.use('/usuario', usuarioRoutes);
 app.use('/cliente', clienteRoutes);
+app.use('/concepto', conceptoRoutes);
 app.use('/rango', rangoRoutes);
 app.use('/user', userRoutes);
 app.use('/variable', variableRoutes);
